@@ -26,17 +26,6 @@ def get_db():
         db.close()
 
 
-#@app.post("/users/", response_model=schemas.User)
-#def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-#    db_user = crud.get_user_by_email(db, email=user.email)
-#    if db_user:
-#        raise HTTPException(status_code=400, detail="Email already registered")
-#    return crud.create_user(db=db, user=user)
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
 # -------------------- Passing -----------------------------
 @app.get("/passing/", response_model=list[schemas.Passing])
 def read_passing(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
@@ -70,7 +59,6 @@ def get_receiver_distinct_name(player_name: str, db: Session = Depends(get_db)):
     print(f'In main.py rec_player_name is: |{player_name}|')
     receiving = crud.get_receiving_distinctName_var(db,  player_name = player_name)
     return receiving
-
 
 # -------------------- rushing -----------------------------
 @app.get("/rushing/", response_model=list[schemas.Rushing])
