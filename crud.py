@@ -20,7 +20,7 @@ def get_rushing_distinctName_var( db: Session, player_name: str):
     print(f'Player name is {player_name}')    
     stmt = select(models.Rushing.Player, models.Rushing.Year, models.Rushing.Week, models.Rushing.Att,
                   models.Rushing.Yds, models.Rushing.TD, models.Rushing.Home_Away, models.Rushing.Opp
-                ).where(models.Rushing.Player == player_name)
+                ).where(models.Rushing.Player == player_name).order_by(models.Rushing.Year, models.Rushing.Week)
     #print(stmt) 
     #for user in db.execute(stmt).fetchall():
     #    print(user)
@@ -43,7 +43,7 @@ def get_receiving_distinctName_var( db: Session, player_name: str):
     print(f'Player name is {player_name}')    
     stmt = select(models.Receiving.Player, models.Receiving.Year, models.Receiving.Week, models.Receiving.Rec,
                   models.Receiving.Yds, models.Receiving.TD, models.Receiving.Home_Away, models.Receiving.Opp
-                ).where(models.Receiving.Player == player_name)
+                ).where(models.Receiving.Player == player_name).order_by(models.Receiving.Year,models.Receiving.Week)
     #print(stmt) 
     #for user in db.execute(stmt).fetchall():
     #    print(user)
@@ -64,7 +64,7 @@ def get_distinctName_var( db: Session, player_name: str):
     stmt = select(models.Passing.Player, models.Passing.Year, models.Passing.Week, models.Passing.Yds, models.Passing.Cmp,
                   models.Passing.Att, models.Passing.TD, models.Passing.Int,models.Passing.Home_Away, models.Passing.Opp,
                   models.Passing.Rate, models.Passing.Comp_Per,
-                ).where(models.Passing.Player == player_name)
+                ).where(models.Passing.Player == player_name).order_by(models.Passing.Year,models.Passing.Week)
     #print(stmt) 
     #for user in db.execute(stmt).fetchall():
     #    print(user)
