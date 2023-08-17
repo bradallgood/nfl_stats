@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <h1></h1>
+
+    <img src="images/nfl_logo.jpg" alt="The Firefox logo: a flaming fox surrounding the Earth." width="200" height="150">
+    
+    <label for="passing_dropdown">Passing Stats for 2021 and 2022:</label>
+    <select id="passing_dropdown"></select>
+    <button id="passing_submitBtn">Submit</button>
+    <br>
+    <label for="receiving_dropdown">Receiving Stats for 2021 and 2022:</label>
+    <select id="receiving_dropdown"></select>
+    <button id="receiving_submitBtn">Submit</button>
+    <br>
+    <label for="rushing_dropdown">Rushing Stats for 2021 and 2022:</label>
+    <select id="rushing_dropdown"></select>
+    <button id="rushing_submitBtn">Submit</button>
+
+
+    <div id='PassingYDS'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='COMPATT'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='TDINT'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='PassingRAT'><!-- Plotly chart wilfl be drawn inside this DIV --></div>
+
+    <div id='ReceivingYDS'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='RECTD'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='ReceivingREC'><!-- Plotly chart will be drawn inside this DIV --></div>
+
+    <div id='RushingYDS'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='RUSHTD'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='RushingCAR'><!-- Plotly chart will be drawn inside this DIV --></div>
+    
+    <script src="scripts/main1.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.24.1.min.js'></script>
+
+  </body>
+</html>
