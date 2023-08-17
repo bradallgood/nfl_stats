@@ -6,15 +6,15 @@ function graph_td_int(data,selectedOption) {
 
   var trace1 = {
     x: data.map(g_item => g_item.TD),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'TDs',
     type: 'bar',
     orientation: 'h'
   };
   
   var trace2 = {
-    x: data.map(g_item => g_item.INT),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Int),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Ints',
     type: 'bar',
     orientation: 'h'
@@ -45,16 +45,16 @@ function graph_td_int(data,selectedOption) {
 function graph_comp_att(data,selectedOption) {
 
   var trace1 = {
-    x: data.map(g_item => g_item.ATT),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Att),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Attempts',
     type: 'bar',
     orientation: 'h'
   };
   
   var trace2 = {
-    x: data.map(g_item => g_item.COMP),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Cmp),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Completions',
     type: 'bar',
     orientation: 'h'
@@ -83,8 +83,8 @@ function graph_comp_att(data,selectedOption) {
 
 function graph_passing_yds(data,selectedOption) {
     var trace1 = {
-      x: data.map(g_item => g_item.YDS),
-      y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+      x: data.map(g_item => g_item.Yds),
+      y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
       name: 'YDS',
       type: 'bar',
       orientation: 'h'
@@ -113,8 +113,8 @@ function graph_passing_yds(data,selectedOption) {
 
 function graph_passing_rating(data,selectedOption) {
   var trace1 = {
-    x: data.map(g_item => g_item.RAT),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Rate),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Rating',
     type: 'bar',
     orientation: 'h'
@@ -142,8 +142,8 @@ function graph_passing_rating(data,selectedOption) {
 
 function graph_receiving_yds(data,selectedOption) {
   var trace1 = {
-    x: data.map(g_item => g_item.YDS),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Yds),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Rec Yds',
     type: 'bar',
     orientation: 'h'
@@ -171,8 +171,8 @@ function graph_receiving_yds(data,selectedOption) {
 
 function graph_receiving_receptions(data,selectedOption) {
   var trace1 = {
-    x: data.map(g_item => g_item.REC),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Rec),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Receptions',
     type: 'bar',
     orientation: 'h'
@@ -201,7 +201,7 @@ function graph_receiving_receptions(data,selectedOption) {
 function graph_receiving_tds(data,selectedOption) {
   var trace1 = {
     x: data.map(g_item => g_item.TD),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Rec TDs',
     type: 'bar',
     orientation: 'h'
@@ -230,8 +230,8 @@ function graph_receiving_tds(data,selectedOption) {
 
 function graph_rushing_yds(data,selectedOption) {
   var trace1 = {
-    x: data.map(g_item => g_item.YDS),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Yds),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Rush Yds',
     type: 'bar',
     orientation: 'h'
@@ -259,8 +259,8 @@ function graph_rushing_yds(data,selectedOption) {
 
 function graph_rushing_att(data,selectedOption) {
   var trace1 = {
-    x: data.map(g_item => g_item.CAR),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    x: data.map(g_item => g_item.Att),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Carries',
     type: 'bar',
     orientation: 'h'
@@ -289,7 +289,7 @@ function graph_rushing_att(data,selectedOption) {
 function graph_rushing_tds(data,selectedOption) {
   var trace1 = {
     x: data.map(g_item => g_item.TD),
-    y: data.map(g_item => `${g_item.YEAR} Week: ${g_item.WEEK} ${g_item.HOME_AWAY} ${g_item.OPPONENT} `),
+    y: data.map(g_item => `${g_item.Year} Week: ${g_item.Week} ${g_item.Home_Away} ${g_item.Opp} `),
     name: 'Rushing TDs',
     type: 'bar',
     orientation: 'h'
@@ -322,8 +322,8 @@ async function rush_populateDropdown(apiUrl) {
   console.log(data)
   data.forEach(item => {
     const option = document.createElement('option');
-    option.value = item.NAME; // Assuming the API response contains an 'id' field
-    option.textContent = item.NAME; // Assuming the API response contains a 'name' field
+    option.value = item.Player; // Assuming the API response contains an 'id' field
+    option.textContent = item.Player; // Assuming the API response contains a 'name' field
     rushing_dropdown.appendChild(option);
   });
 }
@@ -334,8 +334,8 @@ async function rec_populateDropdown(apiUrl) {
   console.log(data)
   data.forEach(item => {
     const option = document.createElement('option');
-    option.value = item.NAME; // Assuming the API response contains an 'id' field
-    option.textContent = item.NAME; // Assuming the API response contains a 'name' field
+    option.value = item.Player; // Assuming the API response contains an 'id' field
+    option.textContent = item.Player; // Assuming the API response contains a 'name' field
     receiving_dropdown.appendChild(option);
   });
 }
@@ -346,8 +346,8 @@ async function populateDropdown(apiUrl) {
   console.log(data)
   data.forEach(item => {
     const option = document.createElement('option');
-    option.value = item.NAME; // Assuming the API response contains an 'id' field
-    option.textContent = item.NAME; // Assuming the API response contains a 'name' field
+    option.value = item.Player; // Assuming the API response contains an 'id' field
+    option.textContent = item.Player; // Assuming the API response contains a 'name' field
     passing_dropdown.appendChild(option);
   });
 }
