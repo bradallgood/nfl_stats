@@ -176,3 +176,54 @@ class Passing_player(PassingBase):
     class Config:
         orm_mode = True
 
+# ------------------- Passing ----------------------------
+class FantasyBase(BaseModel):
+    pass
+
+class Fantasy(FantasyBase):
+    Week: int
+    Date: date
+    PPR: float
+    DKPt: float
+    FDPt: float
+    FantPt: float
+    Rk: int
+    Game: int
+    Year: int
+    index: int
+    Score: str
+    Pkcol: str
+    Player: str
+    Day: str
+    Age: str
+    Team: str
+    Home_Away: str
+    Opp: str
+    Result: str
+    Pos: str
+    Win_Loss: str
+    Points: float
+
+    class Config:
+        orm_mode = True
+
+
+class Fantasy_pos(FantasyBase):
+                       
+    Pos: str
+    Player: str    
+    Points: float
+
+    class Config:
+        orm_mode = True
+
+class Fantasy_pos_limit(FantasyBase):
+                       
+    Pos: str
+    Player: str    
+    Points: float
+
+    class Config:
+        orm_mode = True
+
+

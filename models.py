@@ -97,3 +97,30 @@ class Rushing(Base):
     Pos = Column(String)
     Win_Loss = Column(String)
     Score = Column(String)
+
+# ---------------------------- Fantasy  ----------------------------------
+
+class Fantasy(Base):
+    __tablename__ = "fantasy"
+    Week = Column(Integer)
+    Date = Column(Date)
+    PPR = Column(Float)
+    DKPt = Column(Float)
+    FDPt = Column(Float)
+    FantPt = Column(Float)
+    Rk = Column(Integer)
+    Game = Column(Integer)
+    Year = Column(Integer)
+    index = Column(Integer)
+    Score = Column(String)
+    Pkcol = Column(String, primary_key=True)
+    Player = Column(String)
+    Day = Column(String)
+    Age = Column(String)
+    Team = Column(String)
+    Home_Away = Column(String)
+    Opp = Column(String)
+    Result = Column(String)
+    Pos = Column(String)
+    Win_Loss = Column(String)
+    Points = Column(Float)

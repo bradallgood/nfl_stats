@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import select
+from sqlalchemy.sql import func, select
+from sqlalchemy import and_
 
 import models, schemas
 
@@ -69,3 +71,47 @@ def get_distinctName_var( db: Session, player_name: str):
     #for user in db.execute(stmt).fetchall():
     #    print(user)
     return db.execute(stmt).fetchall()
+
+
+
+def get_fantasy_pos( db: Session, position: str):
+
+    filter_condition = and_(models.Fantasy.Pos == position, models.Fantasy.FantPt.isnot(None))
+
+    # Create the SQLAlchemy select statement
+    stmt = (
+        select(
+            models.Fantasy.Pos,
+            models.Fantasy.Player,
+            func.sum(models.Fantasy.FantPt).label("Points")
+        )
+        .where(filter_condition)
+        .group_by(models.Fantasy.Pos, models.Fantasy.Player)
+        .order_by(func.sum(models.Fantasy.FantPt).desc())
+    )
+    print(stmt) 
+    for user in db.execute(stmt).all():
+        print(user)
+
+    return db.execute(stmt).all()
+
+def get_fantasy_pos_limit( db: Session, position: str, limit: int):
+
+    filter_condition = and_(models.Fantasy.Pos == position, models.Fantasy.FantPt.isnot(None))
+
+    # Create the SQLAlchemy select statement
+    stmt = (
+        select(
+            models.Fantasy.Pos,
+            models.Fantasy.Player,
+            func.sum(models.Fantasy.FantPt).label("Points")
+        )
+        .where(filter_condition)
+        .group_by(models.Fantasy.Pos, models.Fantasy.Player)
+        .order_by(func.sum(models.Fantasy.FantPt).desc()).limit(limit)
+    )
+    print(stmt) 
+    for user in db.execute(stmt).all():
+        print(user)
+
+    return db.execute(stmt).all()

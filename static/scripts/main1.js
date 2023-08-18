@@ -315,6 +315,176 @@ function graph_rushing_tds(data,selectedOption) {
   Plotly.newPlot('RUSHTD', g_data, layout);
 }
 
+function calculateAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  const sum = arr.reduce((acc, curr) => acc + curr, 0);
+  const average = sum / arr.length;
+  return average.toFixed(2);
+}
+
+function graph_position_ftpt(data,selectedOption,div_name,div_name_1,div_name_2) {
+  total_results = data.map(g_item=>g_item.Points)
+  avg_pts = calculateAverage(total_results); 
+  num_uniq = (total_results).length;
+
+  top_ten = Math.round(num_uniq * 0.1)
+  ten_results =  total_results.slice(0,top_ten+1)
+  ten_avg_pts = calculateAverage(ten_results);
+
+  top_quart = Math.round(num_uniq * 0.25)
+  quart_results =  total_results.slice(0,top_quart+1)
+  quart_avg_pts = calculateAverage(quart_results);
+  
+  total_results_player = data.map(g_item=>g_item.Player)
+  quart_results_player =  total_results_player.slice(0,top_quart+1)
+
+  quart_results_player_low =  total_results_player.slice(top_quart*-1)
+  quart_results_low =  total_results.slice(top_quart*-1)
+
+  var trace1 = {
+    x: total_results,
+    name: 'All Population',
+    type: 'histogram',
+    xbins: {
+      start: 0,
+      end: 500,
+      size: 10  // Adjust bin size here
+    },
+    marker: {
+      color: 'blue'  // Set color to red
+    },
+    opacity: 0.2,
+  };
+
+  var trace2 = {
+    x: quart_results,
+    name: 'Top Quartile',
+    type: 'histogram',
+    xbins: {
+      start: 0,
+      end: 500,
+      size: 10  // Adjust bin size here
+    },
+    marker: {
+      color: 'Yellow'  // Set color to red
+    },
+    opacity: 0.6,
+    
+  };
+
+  var trace3 = {
+    x: quart_results_low,
+    name: 'Bottom Quartile',
+    type: 'histogram',
+    xbins: {
+      start: 0,
+      end: 500,
+      size: 10  // Adjust bin size here
+    },
+    marker: {
+      color: 'red'  // Set color to red
+    },
+    opacity: 0.6,
+    
+  };
+
+  var trace4 = {
+    x: ten_results,
+    name: 'Top 10%',
+    type: 'histogram',
+    xbins: {
+      start: 0,
+      end: 500,
+      size: 10  // Adjust bin size here
+    },
+    marker: {
+      color: 'green'  // Set color to red
+    },
+    opacity: 0.8,
+    
+  };
+  
+  var g_data = [trace1,trace2,trace3,trace4];
+  
+  var layout = {
+    barmode: "overlay",
+    width: 600,
+    height: 225,
+    margin: {
+        l: 20,
+        r: 20,
+        t: 50,
+        b: 50
+      },
+    title: `${selectedOption} Fantasy Points Histogram
+              <br> All Pop #: ${num_uniq}  Top 10%: ${top_ten}  Top Quarter #: ${top_quart} 
+              <br> All Pop Avg: ${avg_pts}  Top 10% Avg: ${ten_avg_pts} Top Quarter Avg: ${quart_avg_pts}`, 
+    font: {
+      size: 10  // Set font size for other labels like legend and tick labels
+    }
+  };
+  
+  Plotly.newPlot(div_name, g_data, layout);
+
+  var trace1 = {
+    x: quart_results_player,
+    y: quart_results,
+    name: 'Fantasy Points',
+    type: 'bar',
+    //orientation: 'h'
+  };
+  
+  var g_data = [trace1];
+  
+  var layout = {
+    width: 600,
+    height: 225,
+    margin: {
+        l: 20,
+        r: 20,
+        t: 50,
+        b: 50
+      },
+    title: `${selectedOption} Fantasy Points - highes quartile`,
+    font: {
+      size: 10  // Set font size for other labels like legend and tick labels
+    }
+  };
+  
+  Plotly.newPlot(div_name_1, g_data, layout);
+
+  quart_results_player_low =  total_results_player.slice(top_quart*-1)
+  quart_results_low =  total_results.slice(top_quart*-1)
+
+  var trace1 = {
+    x: quart_results_player_low,
+    y: quart_results_low,
+    name: 'Fantasy Points',
+    type: 'bar',
+    //orientation: 'h'
+  };
+  
+  var g_data = [trace1];
+  
+  var layout = {
+    width: 600,
+    height: 225,
+    margin: {
+        l: 20,
+        r: 20,
+        t: 50,
+        b: 50
+      },
+    title: `${selectedOption} Fantasy Points - Lowest Quartile`,
+    font: {
+      size: 10  // Set font size for other labels like legend and tick labels
+    }
+  };
+  
+  Plotly.newPlot(div_name_2, g_data, layout);
+}
 
 // Function to populate the dropdown from API response
 async function rush_populateDropdown(apiUrl) {
@@ -352,6 +522,14 @@ async function populateDropdown(apiUrl) {
   });
 }
 
+async function get_pos_info(apiUrl,position,div_name,div_name_1,div_name_2) {
+  var data = await fetchData(apiUrl,position);
+  console.log(data);
+  graph_position_ftpt(data,position,div_name,div_name_1,div_name_2);
+
+}
+
+
 // Function to fetch data from the API
 async function fetchData(apiUrl) {
     try {
@@ -368,6 +546,13 @@ window.onload =  function() {
     populateDropdown('http://localhost:8000/distinct_name');
     rec_populateDropdown('http://localhost:8000/receiving_distinct_name');
     rush_populateDropdown('http://localhost:8000/rushing_distinct_name');
+    get_pos_info('http://localhost:8000/fantasy_pos/QB',"QB","2022_QB_Fantasy","2022_QB_Fantasy_1","2022_QB_Fantasy_2");
+    get_pos_info('http://localhost:8000/fantasy_pos/WR',"WR","2022_WR_Fantasy","2022_WR_Fantasy_1","2022_WR_Fantasy_2");
+    get_pos_info('http://localhost:8000/fantasy_pos/RB',"RB","2022_RB_Fantasy","2022_RB_Fantasy_1","2022_RB_Fantasy_2");
+    get_pos_info('http://localhost:8000/fantasy_pos/TE',"TE","2022_TE_Fantasy","2022_TE_Fantasy_1","2022_TE_Fantasy_2");
+    get_pos_info('http://localhost:8000/fantasy_pos/K',"K","2022_K_Fantasy","2022_K_Fantasy_1","2022_K_Fantasy_2");
+
+
 }
 
 document.addEventListener("DOMContentLoaded", async function() {

@@ -76,3 +76,15 @@ def get_rusher_distinct_name(player_name: str, db: Session = Depends(get_db)):
     print(f'In main.py rec_player_name is: |{player_name}|')
     rushing = crud.get_rushing_distinctName_var(db,  player_name = player_name)
     return rushing
+
+# -------------------- fantasy -----------------------------
+
+@app.get("/fantasy_pos/{position}", response_model=list[schemas.Fantasy_pos])
+def get_fantasy_pos(position: str, db: Session = Depends(get_db)):
+    fantasy_pos = crud.get_fantasy_pos(db,  position = position)
+    return fantasy_pos
+
+@app.get("/fantasy_pos_limit/{position}/{limit}", response_model=list[schemas.Fantasy_pos_limit])
+def get_fantasy_pos_limit(position: str, limit: int, db: Session = Depends(get_db)):
+    fantasy_pos_limit = crud.get_fantasy_pos_limit(db,  position = position, limit = limit)
+    return fantasy_pos_limit
